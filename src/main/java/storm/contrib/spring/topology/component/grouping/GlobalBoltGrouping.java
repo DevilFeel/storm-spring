@@ -1,6 +1,6 @@
 package storm.contrib.spring.topology.component.grouping;
 
-import backtype.storm.topology.BoltDeclarer;
+import org.apache.storm.topology.BoltDeclarer;
 
 /**
  * [Class Description]

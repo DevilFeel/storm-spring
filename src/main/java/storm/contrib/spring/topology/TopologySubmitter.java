@@ -1,13 +1,14 @@
 package storm.contrib.spring.topology;
 
-import backtype.storm.StormSubmitter;
-import backtype.storm.generated.AlreadyAliveException;
-import backtype.storm.generated.InvalidTopologyException;
-import backtype.storm.generated.StormTopology;
+import java.util.Map;
+
+import org.apache.storm.StormSubmitter;
+import org.apache.storm.generated.AlreadyAliveException;
+import org.apache.storm.generated.AuthorizationException;
+import org.apache.storm.generated.InvalidTopologyException;
+import org.apache.storm.generated.StormTopology;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Map;
 
 /**
  * [Class Description]
@@ -29,13 +30,13 @@ public final class TopologySubmitter {
         }
     }
 
-    private static void submitTopologies(final TopologySubmission topologySubmission) throws AlreadyAliveException, InvalidTopologyException {
+    private static void submitTopologies(final TopologySubmission topologySubmission) throws AlreadyAliveException, InvalidTopologyException, AuthorizationException {
         for (Map.Entry<String, StormTopology> entry : topologySubmission.getStormTopologies().entrySet()) {
             StormSubmitter.submitTopology(entry.getKey(), topologySubmission.getConfig(), entry.getValue());
         }
     }
 
-    public static void main(final String[] args) throws AlreadyAliveException, InvalidTopologyException {
+    public static void main(final String[] args) throws AlreadyAliveException, InvalidTopologyException, AuthorizationException {
         validateArgs(args);
         final ApplicationContext applicationContext = new ClassPathXmlApplicationContext(args[0]);
         final TopologySubmission topologySubmission = (TopologySubmission) applicationContext.getBean(args[1]);

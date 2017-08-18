@@ -1,8 +1,8 @@
 package storm.contrib.spring.topology.component.grouping;
 
-import backtype.storm.topology.BoltDeclarer;
-import backtype.storm.tuple.Fields;
-import backtype.storm.utils.Utils;
+import org.apache.storm.topology.BoltDeclarer;
+import org.apache.storm.tuple.Fields;
+import org.apache.storm.utils.Utils;
 
 /**
  * [Class Description]

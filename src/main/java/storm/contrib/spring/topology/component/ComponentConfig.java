@@ -1,7 +1,7 @@
 package storm.contrib.spring.topology.component;
 
-import backtype.storm.Config;
-import backtype.storm.topology.ComponentConfigurationDeclarer;
+import org.apache.storm.Config;
+import org.apache.storm.topology.ComponentConfigurationDeclarer;
 
 /**
  * [Class Description]

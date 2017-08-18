@@ -1,7 +1,7 @@
 package storm.contrib.spring.topology.component.spout;
 
-import backtype.storm.topology.IComponent;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.topology.IComponent;
+import org.apache.storm.topology.TopologyBuilder;
 import storm.contrib.spring.topology.component.IComponentConfig;
 
 /**

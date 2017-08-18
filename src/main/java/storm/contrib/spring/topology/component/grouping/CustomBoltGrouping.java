@@ -1,7 +1,7 @@
 package storm.contrib.spring.topology.component.grouping;
 
-import backtype.storm.grouping.CustomStreamGrouping;
-import backtype.storm.topology.BoltDeclarer;
+import org.apache.storm.grouping.CustomStreamGrouping;
+import org.apache.storm.topology.BoltDeclarer;
 
 /**
  * [Class Description]

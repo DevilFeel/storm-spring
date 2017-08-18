@@ -1,7 +1,7 @@
 package storm.contrib.spring.topology;
 
-import backtype.storm.generated.StormTopology;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.generated.StormTopology;
+import org.apache.storm.topology.TopologyBuilder;
 import org.springframework.beans.factory.FactoryBean;
 import storm.contrib.spring.topology.component.bolt.IBolt;
 import storm.contrib.spring.topology.component.spout.ISpout;

@@ -1,8 +1,8 @@
 package storm.contrib.spring.topology.component.grouping;
 
-import backtype.storm.generated.GlobalStreamId;
-import backtype.storm.generated.Grouping;
-import backtype.storm.topology.BoltDeclarer;
+import org.apache.storm.generated.GlobalStreamId;
+import org.apache.storm.generated.Grouping;
+import org.apache.storm.topology.BoltDeclarer;
 
 /**
  * [Class Description]

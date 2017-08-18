@@ -1,7 +1,7 @@
 package storm.contrib.spring.topology.component.spout;
 
-import backtype.storm.topology.IRichStateSpout;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.topology.IRichStateSpout;
+import org.apache.storm.topology.TopologyBuilder;
 
 /**
  * [Class Description]

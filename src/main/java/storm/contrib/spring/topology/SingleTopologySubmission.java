@@ -1,7 +1,7 @@
 package storm.contrib.spring.topology;
 
-import backtype.storm.Config;
-import backtype.storm.generated.StormTopology;
+import org.apache.storm.Config;
+import org.apache.storm.generated.StormTopology;
 
 import java.util.HashMap;
 import java.util.Map;

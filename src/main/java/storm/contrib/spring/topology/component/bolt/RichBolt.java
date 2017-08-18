@@ -1,8 +1,8 @@
 package storm.contrib.spring.topology.component.bolt;
 
-import backtype.storm.topology.BoltDeclarer;
-import backtype.storm.topology.IRichBolt;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.topology.BoltDeclarer;
+import org.apache.storm.topology.IRichBolt;
+import org.apache.storm.topology.TopologyBuilder;
 
 /**
  * [Class Description]

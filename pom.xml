@@ -10,7 +10,7 @@
 
     <name>storm-spring</name>
     <description>Implementation for defining Storm topologies in spring xml</description>
-
+	<url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,11 +53,7 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.storm</groupId>
-            <artifactId>storm-core</artifactId>
-            <version>1.0.1</version>
-        </dependency>
+        
     </dependencies>
 
 

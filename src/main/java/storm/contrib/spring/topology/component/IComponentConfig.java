@@ -1,6 +1,6 @@
 package storm.contrib.spring.topology.component;
 
-import backtype.storm.Config;
+import org.apache.storm.Config;
 
 /**
  * [Class Description]

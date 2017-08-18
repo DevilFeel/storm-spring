@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	         			http://www.springframework.org/schema/util
+	         			http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+    <bean id="config" class="org.apache.storm.Config" p:debug="false"/>
+
+    <bean id="topologySubmission" class="storm.contrib.spring.topology.MultiTopologySubmission">
+        <constructor-arg index="0">
+            <util:map>
+                <entry key="wordCount" value-ref="wordCountTopology"/>
+            </util:map>
+        </constructor-arg>
+        <property name="config" ref="config"/>
+    </bean>
+
+    <!-- Assembled Topologies -->
+    <bean id="wordCountTopology" class="storm.contrib.spring.topology.TopologyFactory"
+          c:spout-ref="sentenceSpouts"
+          c:bolt-ref="countBolts"/>
+
+
+    <util:list id="sentenceSpouts">
+        <!--分发语句-->
+        <bean id="sentenceSpout" class="storm.contrib.spring.topology.component.spout.RichSpout"
+              c:componentId="sentenceSpoutId"
+              c:stormSpout-ref="sentenceSpoutRef" p:parallelismHint="1"/>
+    </util:list>
+    <util:list id="countBolts">
+        <!--分词-->
+        <bean id="splitBolt" class="storm.contrib.spring.topology.component.bolt.RichBolt" c:componentId="splitBoltId"
+              c:stormBolt-ref="splitBoltRef" p:boltGroupings-ref="ShuffleGrouping1" p:parallelismHint="2"/>
+        <!--统计单词个数-->
+        <bean id="countBolt" class="storm.contrib.spring.topology.component.bolt.RichBolt" c:componentId="countBoltId"
+              c:stormBolt-ref="countBoltRef" p:boltGroupings-ref="ShuffleGrouping2" p:parallelismHint="5"/>
+        <!---->
+        <bean id="reportBolt" class="storm.contrib.spring.topology.component.bolt.RichBolt" c:componentId="reportBoltId"
+              c:stormBolt-ref="reportBoltRef" p:boltGroupings-ref="ShuffleGrouping3" p:parallelismHint="1"/>
+    </util:list>
+
+    <!--分组-->
+    <bean id="ShuffleGrouping1" class="storm.contrib.spring.topology.component.grouping.ShuffleBoltGrouping"
+          c:componentId="sentenceSpoutId"/>
+
+    <bean id="ShuffleGrouping2" class="storm.contrib.spring.topology.component.grouping.FieldsBoltGrouping"
+          c:componentId="splitBoltId" c:fields-ref="Fields1"/>
+    <bean id="Fields1" class="org.apache.storm.tuple.Fields" c:fields="word"></bean>
+
+    <bean id="ShuffleGrouping3" class="storm.contrib.spring.topology.component.grouping.ShuffleBoltGrouping"
+          c:componentId="countBoltId"/>
+    <!-- Bolt And RichSpout Implementations -->
+    <bean id="sentenceSpoutRef" class="com.test.wordsplit.spout.SentenceSpout"></bean>
+    <bean id="splitBoltRef" class="com.test.wordsplit.bolt.SplitSentenceBolt"></bean>
+    <bean id="countBoltRef" class="com.test.wordsplit.bolt.WordCountBolt"></bean>
+    <bean id="reportBoltRef" class="com.test.wordsplit.bolt.ReportBolt"></bean>
+
 
 </beans>

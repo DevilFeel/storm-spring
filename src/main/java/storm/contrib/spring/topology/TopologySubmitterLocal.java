@@ -44,8 +44,8 @@ public final class TopologySubmitterLocal {
     }
 
     public static void main(final String[] args) throws AlreadyAliveException, InvalidTopologyException, AuthorizationException {
-//        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:app.xml"); // 从类文件目录中获取
-        final ApplicationContext applicationContext = new FileSystemXmlApplicationContext("file:/home/test/app.xml"); //从系统文件路径获取
+        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:app.xml"); // 从类文件目录中获取
+//        final ApplicationContext applicationContext = new FileSystemXmlApplicationContext("file:/home/test/app.xml"); //从系统文件路径获取
         final TopologySubmission topologySubmission = (TopologySubmission) applicationContext.getBean("topologySubmission");
         submitTopologies(topologySubmission);
     }

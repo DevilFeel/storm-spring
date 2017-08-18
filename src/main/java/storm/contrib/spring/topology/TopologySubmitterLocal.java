@@ -8,6 +8,7 @@ import org.apache.storm.generated.StormTopology;
 import org.apache.storm.utils.Utils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.util.Map;
 
@@ -43,7 +44,8 @@ public final class TopologySubmitterLocal {
     }
 
     public static void main(final String[] args) throws AlreadyAliveException, InvalidTopologyException, AuthorizationException {
-        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:app.xml");
+//        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:app.xml"); // 从类文件目录中获取
+        final ApplicationContext applicationContext = new FileSystemXmlApplicationContext("file:/home/test/app.xml"); //从系统文件路径获取
         final TopologySubmission topologySubmission = (TopologySubmission) applicationContext.getBean("topologySubmission");
         submitTopologies(topologySubmission);
     }

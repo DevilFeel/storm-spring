@@ -9,6 +9,7 @@ import org.apache.storm.generated.InvalidTopologyException;
 import org.apache.storm.generated.StormTopology;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * [Class Description]
@@ -38,7 +39,8 @@ public final class TopologySubmitter {
 
     public static void main(final String[] args) throws AlreadyAliveException, InvalidTopologyException, AuthorizationException {
         validateArgs(args);
-        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext(args[0]);
+        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext(args[0]); //从类目录文件中读取
+//        final ApplicationContext applicationContext = new FileSystemXmlApplicationContext(args[0]); //从系统文件路径获取
         final TopologySubmission topologySubmission = (TopologySubmission) applicationContext.getBean(args[1]);
         submitTopologies(topologySubmission);
     }
